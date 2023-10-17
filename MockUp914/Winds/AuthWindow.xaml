@@ -1,0 +1,16 @@
+﻿<Window x:Class="MockUp914.Winds.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MockUp914.Winds"
+        mc:Ignorable="d"
+        Title="AuthWindow" Height="720" Width="1080">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox Width="300" x:Name="tb_Login" Text="admin"/>
+            <PasswordBox Width="300" x:Name="pb_Password" Password="admin"/>
+            <Button Width="300" Content="Войти" x:Name="btn_AuthEnter" Click="btn_AuthEnter_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

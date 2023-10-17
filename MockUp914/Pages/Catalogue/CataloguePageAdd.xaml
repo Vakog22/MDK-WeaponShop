@@ -1,0 +1,24 @@
+﻿<Page x:Class="MockUp914.Pages.Catalogue.CataloguePageAdd"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MockUp914.Pages.Catalogue"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1080"
+      Title="CataloguePageAdd">
+
+    <Grid>
+        <StackPanel>
+            <TextBox Width="1000"/>
+            <TextBox Width="1000"/>
+            <TextBox Width="1000"/>
+            <TextBox Width="1000"/>
+            <TextBox Width="1000"/>
+            <WrapPanel>
+                <Button Content="Добавить"/>
+                <Button Content="Отмена" Click="btn_Cancel_Click" x:Name="btn_Cancel"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>

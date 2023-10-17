@@ -1,0 +1,19 @@
+﻿<Page x:Class="MockUp914.Pages.Catalogue.CataloguePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MockUp914.Pages.Catalogue"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1080"
+      Title="CataloguePage">
+
+    <Grid>
+        <StackPanel>
+            <WrapPanel>
+                <TextBox Width="1000"/>
+                <Button Content="+" x:Name="btn_AddProduct" Click="btn_AddProduct_Click"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>
