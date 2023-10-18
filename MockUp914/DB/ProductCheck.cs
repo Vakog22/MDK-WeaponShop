@@ -15,9 +15,9 @@ namespace MockUp914.DB
     public partial class ProductCheck
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int CheckId { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public int IdProduct { get; set; }
+        public int IdCheck { get; set; }
+        public int Quantity { get; set; }
     
         public virtual Check Check { get; set; }
         public virtual Product Product { get; set; }

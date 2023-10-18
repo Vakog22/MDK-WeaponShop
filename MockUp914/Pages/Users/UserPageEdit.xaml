@@ -12,8 +12,7 @@
         <StackPanel>
             <TextBox x:Name="tb_FirstName"/>
             <TextBox x:Name="tb_LastName"/>
-            <TextBox x:Name="tb_PassportSerial"/>
-            <TextBox x:Name="tb_PassportNum"/>
+            <TextBox x:Name="tb_Passport"/>
             <DatePicker x:Name="tb_DateOfBirth"/>
             <TextBox x:Name="tb_Phone"/>
             <TextBox x:Name="tb_Username"/>

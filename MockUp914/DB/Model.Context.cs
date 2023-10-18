@@ -13,10 +13,10 @@ namespace MockUp914.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class DBEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public DBEntities()
+            : base("name=DBEntities")
         {
         }
     
@@ -25,15 +25,14 @@ namespace MockUp914.DB
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<Check> Check { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientLicense> ClientLicense { get; set; }
         public virtual DbSet<LicenseType> LicenseType { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductCheck> ProductCheck { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type> Type { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
     }
 }

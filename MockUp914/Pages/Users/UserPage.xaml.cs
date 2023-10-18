@@ -27,9 +27,7 @@ namespace MockUp914.Pages.Users
         public UserPage()
         {
             InitializeComponent();
-            List<Worker> EmployeeList = new List<Worker>();
-            EmployeeList = context.Worker.ToList();
-            LvWorker.ItemsSource = EmployeeList;
+            UpdateData();
         }
 
         private void btn_AddUser_Click(object sender, RoutedEventArgs e)
@@ -49,26 +47,27 @@ namespace MockUp914.Pages.Users
         private void btn_Delete_Click(object sender, RoutedEventArgs e)
         {
             Worker worker = LvWorker.SelectedItem as Worker;
-            if (worker.Account.IsAdmin == true) { MessageBox.Show("АЗАЗА"); }
-            else 
+            var Result = MessageBox.Show("Вы уверены",
+                "Удалить пользователя", 
+                MessageBoxButton.YesNo, 
+                MessageBoxImage.Question);
+            if (Result == MessageBoxResult.Yes && worker.IsAdmin == false)
             {
-                MessageBoxResult result = MessageBox.Show("Удалить пользователя", "ACHTUNG!",
-                                     MessageBoxButton.YesNo,
-                                     MessageBoxImage.Question);
-                if (result == MessageBoxResult.No)
-                {
-                    
-                }
-                else if (result == MessageBoxResult.Yes)
-                {
-                    context.Worker.Remove(worker);
-                    context.SaveChanges();
-                    List<Worker> EmployeeList = new List<Worker>();
-                    EmployeeList = context.Worker.ToList();
-                    LvWorker.ItemsSource = EmployeeList;
-                }
+                context.Worker.Remove(worker);
+                context.SaveChanges();
+                UpdateData();
+                MessageBox.Show("Пользователь удалён");
             }
-            
+            else if (Result == MessageBoxResult.Yes && worker.IsAdmin == true)
+            {
+                MessageBox.Show("Пользователь - админ, удалить нельзя");
+            }
+        }
+        private void UpdateData()
+        {
+            List<Worker> EmployeeList = new List<Worker>();
+            EmployeeList = context.Worker.ToList();
+            LvWorker.ItemsSource = EmployeeList;
         }
     }
 }

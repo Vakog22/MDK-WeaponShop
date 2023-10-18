@@ -10,13 +10,21 @@
 
     <Grid>
         <StackPanel>
+            <TextBlock Text="Имя"/>
             <TextBox x:Name="tb_FirstName"/>
+            <TextBlock Text="Фамилия"/>
             <TextBox x:Name="tb_LastName"/>
-            <TextBox x:Name="tb_PassportSerial"/>
-            <TextBox x:Name="tb_PassportNum"/>
+            <TextBlock Text="Отчество"/>
+            <TextBox x:Name="tb_Patronymic"/>
+            <TextBlock Text="Пасспорт"/>
+            <TextBox x:Name="tb_Passport"/>
+            <TextBlock Text="Дата рождения"/>
             <DatePicker x:Name="tb_DateOfBirth"/>
+            <TextBlock Text="Телефон"/>
             <TextBox x:Name="tb_Phone"/>
+            <TextBlock Text="Логин"/>
             <TextBox x:Name="tb_Username"/>
+            <TextBlock Text="Пароль"/>
             <TextBox x:Name="tb_Password"/>
             <Button Content="Добавить" x:Name="btn_Add" Click="btn_Add_Click"/>
             <Button Content="Отмена" Name="btn_Cancel" Click="btn_Cancel_Click"/>
