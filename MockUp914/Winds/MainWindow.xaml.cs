@@ -1,5 +1,6 @@
 ﻿using MockUp914.Pages;
 using MockUp914.Pages.Catalogue;
+using MockUp914.Pages.Sales;
 using MockUp914.Pages.Users;
 using MockUp914.Winds;
 using System;
@@ -51,7 +52,8 @@ namespace MockUp914
 
         private void btn_Sales_Click(object sender, RoutedEventArgs e)
         {
-            
+            SalePage salePage = new SalePage();
+            f_MainFrame.Navigate(salePage);
         }
 
         private void btn_Users_Click(object sender, RoutedEventArgs e)

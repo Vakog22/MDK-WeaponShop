@@ -1,0 +1,72 @@
+﻿<Page x:Class="MockUp914.Pages.Sales.SalePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MockUp914.Pages.Sales"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SalePage">
+
+    <Grid>
+        <StackPanel>
+            <WrapPanel>
+                <TextBox Width="1000"/>
+                <Button Content="+" x:Name="btn_AddSale" Click="btn_AddSale_Click"/>
+
+                <ListView x:Name="LvSales"
+   
+   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <ListView.Resources>
+                        <Style TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                    <Setter Property="IsSelected" Value="True"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.Resources>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black"
+             BorderThickness="1"
+             Height="300"
+                 Width="220">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Date}"
+                        FontSize="10"
+                        FontWeight="Bold"
+                        Margin="5 0 5 0"/>
+                                    <TextBlock Text="{Binding Client.SureName}"
+                        FontSize="10"
+                        FontWeight="Bold"
+                        Margin="5 0 5 0"/>
+                                    <TextBlock Text="{Binding Worker.LastName}"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Margin="5 0 5 0"/>
+                                    <Button x:Name="btn_view" Content="Просмотреть содержимое" Click="btn_view_Click"/>
+                                </StackPanel>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </WrapPanel>
+            <DataGrid x:Name="DG_Prods" Height="100" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Product" Binding="{Binding Product.Title}"/>
+                    <DataGridTextColumn Header="Worker" Binding="{Binding Quantity}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

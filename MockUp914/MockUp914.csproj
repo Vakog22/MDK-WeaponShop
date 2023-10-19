@@ -73,6 +73,7 @@
     <Compile Include="DB\ClientLicense.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\DBHelper\BasketHelper.cs" />
     <Compile Include="DB\DBHelper\DBHelper.cs" />
     <Compile Include="DB\LicenseType.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -107,6 +108,9 @@
     <Compile Include="DB\Worker.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Basket\BasketPage.xaml.cs">
+      <DependentUpon>BasketPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Catalogue\CataloguePage.xaml.cs">
       <DependentUpon>CataloguePage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +119,9 @@
     </Compile>
     <Compile Include="Pages\Catalogue\CataloguePageEdit.xaml.cs">
       <DependentUpon>CataloguePageEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Sales\SalePage.xaml.cs">
+      <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Users\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
@@ -128,6 +135,10 @@
     <Compile Include="Winds\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\Basket\BasketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Catalogue\CataloguePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Catalogue\CataloguePageEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Sales\SalePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,9 +218,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Sales\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="62c6a2e06ab04e4695d3ccb271ab041c" Name="Diagram1">
-        <EntityTypeShape EntityType="DBGunshopModel.Check" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.Client" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.ClientLicense" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.LicenseType" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.ProductCheck" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.Type" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBGunshopModel.Worker" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
-        <AssociationConnector Association="DBGunshopModel.FK_Check_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="DBGunshopModel.FK_Check_Worker" ManuallyRouted="false" />
-        <AssociationConnector Association="DBGunshopModel.FK_ProductCheck_Check" ManuallyRouted="false" />
-        <AssociationConnector Association="DBGunshopModel.FK_ClientLicense_Client" ManuallyRouted="false" />
-        <AssociationConnector Association="DBGunshopModel.FK_ClientLicense_LicenseType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBGunshopModel.Product" Width="1.5" PointX="3" PointY="14.5" />
-        <AssociationConnector Association="DBGunshopModel.FK_Product_Type" />
-        <AssociationConnector Association="DBGunshopModel.FK_ProductCheck_Product" />
-        <AssociationConnector Association="DBGunshopModel.FK_Product_LicenseType" />
-        </Diagram>
+      <Diagram DiagramId="62d6be570f2a4f42b729b49ee1b30c22" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.Check" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Client" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ClientLicense" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.LicenseType" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Product" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ProductCheck" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Type" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Worker" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_Check_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Check_Worker" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ProductCheck_Check" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ClientLicense_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ClientLicense_LicenseType" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Product_LicenseType" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Product_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ProductCheck_Product" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище DBGunshopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
@@ -192,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище DBGunshopModelContainer">
+        <EntityContainer Name="Хранилище DBModelContainer">
           <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientLicense" EntityType="Self.ClientLicense" Schema="dbo" store:Type="Tables" />
@@ -235,10 +235,11 @@
             <End Role="ProductCheck" EntitySet="ProductCheck" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DBGunshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
@@ -285,7 +286,21 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ClientLicense" Relationship="Self.FK_ClientLicense_LicenseType" FromRole="LicenseType" ToRole="ClientLicense" />
-          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_Product_LicenseType" FromRole="LicenseType" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_LicenseType" FromRole="LicenseType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdLicenseType" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LicenseType" Relationship="Self.FK_Product_LicenseType" FromRole="Product" ToRole="LicenseType" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Product_Type" FromRole="Product" ToRole="Type" />
+          <NavigationProperty Name="ProductCheck" Relationship="Self.FK_ProductCheck_Product" FromRole="Product" ToRole="ProductCheck" />
         </EntityType>
         <EntityType Name="ProductCheck">
           <Key>
@@ -296,7 +311,7 @@
           <Property Name="IdCheck" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_ProductCheck_Check" FromRole="ProductCheck" ToRole="Check" />
-          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_ProductCheck_Product" FromRole="ProductCheck" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductCheck_Product" FromRole="ProductCheck" ToRole="Product" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -314,20 +329,20 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_Product_Type" FromRole="Type" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Type" FromRole="Type" ToRole="Product" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Passport" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_Check_Worker" FromRole="Worker" ToRole="Check" />
@@ -392,11 +407,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_LicenseType">
+          <End Role="LicenseType" Type="Self.LicenseType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdLicenseType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCheck_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductCheck" Type="Self.ProductCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCheck">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Check" EntityType="Self.Check" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="ClientLicense" EntityType="Self.ClientLicense" />
           <EntitySet Name="LicenseType" EntityType="Self.LicenseType" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductCheck" EntityType="Self.ProductCheck" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type" EntityType="Self.Type" />
@@ -421,78 +473,27 @@
             <End Role="LicenseType" EntitySet="LicenseType" />
             <End Role="ClientLicense" EntitySet="ClientLicense" />
           </AssociationSet>
-          <EntitySet Name="Product" EntityType="DBGunshopModel.Product" />
-          <AssociationSet Name="FK_Product_Type" Association="DBGunshopModel.FK_Product_Type">
-            <End Role="Type" EntitySet="Type" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductCheck_Product" Association="DBGunshopModel.FK_ProductCheck_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductCheck" EntitySet="ProductCheck" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_LicenseType" Association="DBGunshopModel.FK_Product_LicenseType">
+          <AssociationSet Name="FK_Product_LicenseType" Association="Self.FK_Product_LicenseType">
             <End Role="LicenseType" EntitySet="LicenseType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Type" Association="Self.FK_Product_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCheck_Product" Association="Self.FK_ProductCheck_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductCheck" EntitySet="ProductCheck" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="IdLicenseType" Type="Int32" Nullable="false" />
-          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IdType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Type" Relationship="DBGunshopModel.FK_Product_Type" FromRole="Product" ToRole="Type" />
-          <NavigationProperty Name="ProductCheck" Relationship="DBGunshopModel.FK_ProductCheck_Product" FromRole="Product" ToRole="ProductCheck" />
-          <NavigationProperty Name="LicenseType" Relationship="DBGunshopModel.FK_Product_LicenseType" FromRole="Product" ToRole="LicenseType" />
-        </EntityType>
-        <Association Name="FK_Product_Type">
-          <End Type="DBGunshopModel.Type" Role="Type" Multiplicity="1" />
-          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="IdType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductCheck_Product">
-          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="DBGunshopModel.ProductCheck" Role="ProductCheck" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductCheck">
-              <PropertyRef Name="IdProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_LicenseType">
-          <End Type="DBGunshopModel.LicenseType" Role="LicenseType" Multiplicity="1" />
-          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LicenseType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="IdLicenseType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DBGunshopModelContainer" CdmEntityContainer="DBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBModelContainer" CdmEntityContainer="DBEntities">
           <EntitySetMapping Name="Check">
-            <EntityTypeMapping TypeName="DBGunshopModel.Check">
+            <EntityTypeMapping TypeName="DBModel.Check">
               <MappingFragment StoreEntitySet="Check">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -502,7 +503,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="DBGunshopModel.Client">
+            <EntityTypeMapping TypeName="DBModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -515,7 +516,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientLicense">
-            <EntityTypeMapping TypeName="DBGunshopModel.ClientLicense">
+            <EntityTypeMapping TypeName="DBModel.ClientLicense">
               <MappingFragment StoreEntitySet="ClientLicense">
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
                 <ScalarProperty Name="IdType" ColumnName="IdType" />
@@ -525,7 +526,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LicenseType">
-            <EntityTypeMapping TypeName="DBGunshopModel.LicenseType">
+            <EntityTypeMapping TypeName="DBModel.LicenseType">
               <MappingFragment StoreEntitySet="LicenseType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -533,8 +534,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="IdLicenseType" ColumnName="IdLicenseType" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductCheck">
-            <EntityTypeMapping TypeName="DBGunshopModel.ProductCheck">
+            <EntityTypeMapping TypeName="DBModel.ProductCheck">
               <MappingFragment StoreEntitySet="ProductCheck">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
@@ -544,7 +557,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DBGunshopModel.sysdiagrams">
+            <EntityTypeMapping TypeName="DBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -555,7 +568,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="DBGunshopModel.Type">
+            <EntityTypeMapping TypeName="DBModel.Type">
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -563,7 +576,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worker">
-            <EntityTypeMapping TypeName="DBGunshopModel.Worker">
+            <EntityTypeMapping TypeName="DBModel.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -575,18 +588,6 @@
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="DBGunshopModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="IdType" ColumnName="IdType" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="IdLicenseType" ColumnName="IdLicenseType" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
