@@ -22,12 +22,11 @@ namespace MockUp914.DB
         }
     
         public int Id { get; set; }
+        public string FirstName { get; set; }
         public string SureName { get; set; }
-        public string Name { get; set; }
-        public string Patronimyc { get; set; }
+        public string Patronymic { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        public string PassportSerial { get; set; }
-        public string PassportNumber { get; set; }
+        public string Passport { get; set; }
         public string Phone { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

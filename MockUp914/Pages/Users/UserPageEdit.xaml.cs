@@ -28,14 +28,12 @@ namespace MockUp914.Pages.Users
             InitializeComponent();
             tb_FirstName.Text = w.FirstName;
             tb_LastName.Text = w.LastName;
-            tb_PassportSerial.Text = w.PassportSerial;
-            tb_PassportNum.Text = w.PassportNum;
+            tb_Passport.Text = w.Passport;
             tb_DateOfBirth.SelectedDate = w.DateOfBirth;
             tb_Phone.Text = w.Phone;
-            tb_Username.Text = w.Account.Username;
-            tb_Password.Text = w.Account.Password;
+            tb_Username.Text = w.Username;
+            tb_Password.Text = w.Password;
             worker = w;
-            worker.Id = w.Id;
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
@@ -49,13 +47,12 @@ namespace MockUp914.Pages.Users
         {
             worker.FirstName = tb_FirstName.Text;
             worker.LastName = tb_LastName.Text;
-            worker.PassportSerial = tb_PassportSerial.Text;
-            worker.PassportNum = tb_PassportNum.Text;
+            worker.Passport = tb_Passport.Text;
             worker.DateOfBirth = tb_DateOfBirth.SelectedDate.Value;
             worker.Phone = tb_Phone.Text;
-            worker.Account.Username = tb_Username.Text;
-            worker.Account.Password = tb_Password.Text;
-            context.SaveChanges();
+            worker.Username = tb_Username.Text;
+            worker.Password = tb_Password.Text;
+            
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
             UserPage userPage = new UserPage();
             mainWindow.f_MainFrame.Navigate(userPage);

@@ -4,48 +4,37 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище VlGunShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="DateOfCreation" Type="date" Nullable="false" />
-          <Property Name="IsAdmin" Type="bit" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="Хранилище DBGunshopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="IdWorker" Type="int" Nullable="false" />
           <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SureName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Patronimyc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="PassportSerial" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="PassportNumber" Type="char" MaxLength="6" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Passport" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientLicense">
           <Key>
             <PropertyRef Name="IdClient" />
-            <PropertyRef Name="IdLicense" />
+            <PropertyRef Name="IdType" />
           </Key>
           <Property Name="IdClient" Type="int" Nullable="false" />
-          <Property Name="IdLicense" Type="int" Nullable="false" />
-          <Property Name="LicenseNum" Type="nvarchar" MaxLength="50" />
-          <Property Name="LicenseDate" Type="date" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="LicenseNum" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LicenseDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="LicenseType">
           <Key>
@@ -53,34 +42,27 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="IdLicenseType" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="IdType" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCheck">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="CheckId" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" />
-        </EntityType>
-        <EntityType Name="ProductType">
-          <Key>
-            <PropertyRef Name="IdProduct" />
-            <PropertyRef Name="IdType" />
-          </Key>
           <Property Name="IdProduct" Type="int" Nullable="false" />
-          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="IdCheck" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -97,21 +79,22 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="IdAccount" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PassportSerial" Type="char" MaxLength="4" Nullable="false" />
-          <Property Name="PassportNum" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passport" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Check_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -157,7 +140,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ClientLicense">
-              <PropertyRef Name="IdLicense" />
+              <PropertyRef Name="IdType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -173,15 +156,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_LicenseType1">
-          <End Role="LicenseType" Type="Self.LicenseType" Multiplicity="1" />
+        <Association Name="FK_Product_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LicenseType">
+            <Principal Role="Type">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="IdLicenseType" />
+              <PropertyRef Name="IdType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,7 +176,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductCheck">
-              <PropertyRef Name="CheckId" />
+              <PropertyRef Name="IdCheck" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -205,55 +188,17 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductCheck">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductType_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductType">
               <PropertyRef Name="IdProduct" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductType_Type">
-          <End Role="Type" Type="Self.Type" Multiplicity="1" />
-          <End Role="ProductType" Type="Self.ProductType" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductType">
-              <PropertyRef Name="IdType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Worker_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Worker">
-              <PropertyRef Name="IdAccount" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище VlGunShopModelContainer">
-          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="Хранилище DBGunshopModelContainer">
           <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientLicense" EntityType="Self.ClientLicense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseType" EntityType="Self.LicenseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCheck" EntityType="Self.ProductCheck" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
@@ -277,8 +222,8 @@
             <End Role="LicenseType" EntitySet="LicenseType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_LicenseType1" Association="Self.FK_Product_LicenseType1">
-            <End Role="LicenseType" EntitySet="LicenseType" />
+          <AssociationSet Name="FK_Product_Type" Association="Self.FK_Product_Type">
+            <End Role="Type" EntitySet="Type" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCheck_Check" Association="Self.FK_ProductCheck_Check">
@@ -289,43 +234,19 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCheck" EntitySet="ProductCheck" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductType_Product" Association="Self.FK_ProductType_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductType" EntitySet="ProductType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductType_Type" Association="Self.FK_ProductType_Type">
-            <End Role="Type" EntitySet="Type" />
-            <End Role="ProductType" EntitySet="ProductType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Worker_Account" Association="Self.FK_Worker_Account">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Worker" EntitySet="Worker" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="VlGunShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateOfCreation" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Account" FromRole="Account" ToRole="Worker" />
-        </EntityType>
+      <Schema Namespace="DBGunshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Check">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdWorker" Type="Int32" Nullable="false" />
           <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Check_Client" FromRole="Check" ToRole="Client" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Check_Worker" FromRole="Check" ToRole="Worker" />
           <NavigationProperty Name="ProductCheck" Relationship="Self.FK_ProductCheck_Check" FromRole="Check" ToRole="ProductCheck" />
@@ -335,25 +256,24 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PassportSerial" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Passport" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_Check_Client" FromRole="Client" ToRole="Check" />
           <NavigationProperty Name="ClientLicense" Relationship="Self.FK_ClientLicense_Client" FromRole="Client" ToRole="ClientLicense" />
         </EntityType>
         <EntityType Name="ClientLicense">
           <Key>
             <PropertyRef Name="IdClient" />
-            <PropertyRef Name="IdLicense" />
+            <PropertyRef Name="IdType" />
           </Key>
           <Property Name="IdClient" Type="Int32" Nullable="false" />
-          <Property Name="IdLicense" Type="Int32" Nullable="false" />
-          <Property Name="LicenseNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LicenseDate" Type="DateTime" Precision="0" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="LicenseNum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LicenseDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Client" Relationship="Self.FK_ClientLicense_Client" FromRole="ClientLicense" ToRole="Client" />
           <NavigationProperty Name="LicenseType" Relationship="Self.FK_ClientLicense_LicenseType" FromRole="ClientLicense" ToRole="LicenseType" />
         </EntityType>
@@ -363,35 +283,20 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ClientLicense" Relationship="Self.FK_ClientLicense_LicenseType" FromRole="LicenseType" ToRole="ClientLicense" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_LicenseType" FromRole="LicenseType" ToRole="Product" />
-          <NavigationProperty Name="Product1" Relationship="Self.FK_Product_LicenseType1" FromRole="LicenseType" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IdLicenseType" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LicenseType" Relationship="Self.FK_Product_LicenseType" FromRole="Product" ToRole="LicenseType" />
-          <NavigationProperty Name="LicenseType1" Relationship="Self.FK_Product_LicenseType1" FromRole="Product" ToRole="LicenseType" />
-          <NavigationProperty Name="ProductCheck" Relationship="Self.FK_ProductCheck_Product" FromRole="Product" ToRole="ProductCheck" />
-          <NavigationProperty Name="Type" Relationship="Self.ProductType" FromRole="Product" ToRole="Type" />
+          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_Product_LicenseType" FromRole="LicenseType" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductCheck">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <Property Name="CheckId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="IdCheck" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_ProductCheck_Check" FromRole="ProductCheck" ToRole="Check" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_ProductCheck_Product" FromRole="ProductCheck" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_ProductCheck_Product" FromRole="ProductCheck" ToRole="Product" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -408,37 +313,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="Self.ProductType" FromRole="Type" ToRole="Product" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="DBGunshopModel.FK_Product_Type" FromRole="Type" ToRole="Product" />
         </EntityType>
         <EntityType Name="Worker">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="IdAccount" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassportSerial" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="PassportNum" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passport" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_Worker_Account" FromRole="Worker" ToRole="Account" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Check" Relationship="Self.FK_Check_Worker" FromRole="Worker" ToRole="Check" />
         </EntityType>
-        <Association Name="FK_Worker_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
-          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Account">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Worker">
-              <PropertyRef Name="IdAccount" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Check_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Check" Type="Self.Check" Multiplicity="*" />
@@ -471,7 +364,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductCheck">
-              <PropertyRef Name="CheckId" />
+              <PropertyRef Name="IdCheck" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -495,65 +388,19 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ClientLicense">
-              <PropertyRef Name="IdLicense" />
+              <PropertyRef Name="IdType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_LicenseType">
-          <End Role="LicenseType" Type="Self.LicenseType" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LicenseType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="IdLicenseType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_LicenseType1">
-          <End Role="LicenseType" Type="Self.LicenseType" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LicenseType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="IdLicenseType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductCheck_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductCheck" Type="Self.ProductCheck" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductCheck">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProductType">
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <End Role="Type" Type="Self.Type" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Account" EntityType="Self.Account" />
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Check" EntityType="Self.Check" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="ClientLicense" EntityType="Self.ClientLicense" />
           <EntitySet Name="LicenseType" EntityType="Self.LicenseType" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductCheck" EntityType="Self.ProductCheck" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Type" EntityType="Self.Type" />
           <EntitySet Name="Worker" EntityType="Self.Worker" />
-          <AssociationSet Name="FK_Worker_Account" Association="Self.FK_Worker_Account">
-            <End Role="Account" EntitySet="Account" />
-            <End Role="Worker" EntitySet="Worker" />
-          </AssociationSet>
           <AssociationSet Name="FK_Check_Client" Association="Self.FK_Check_Client">
             <End Role="Client" EntitySet="Client" />
             <End Role="Check" EntitySet="Check" />
@@ -574,76 +421,111 @@
             <End Role="LicenseType" EntitySet="LicenseType" />
             <End Role="ClientLicense" EntitySet="ClientLicense" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_LicenseType" Association="Self.FK_Product_LicenseType">
-            <End Role="LicenseType" EntitySet="LicenseType" />
+          <EntitySet Name="Product" EntityType="DBGunshopModel.Product" />
+          <AssociationSet Name="FK_Product_Type" Association="DBGunshopModel.FK_Product_Type">
+            <End Role="Type" EntitySet="Type" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_LicenseType1" Association="Self.FK_Product_LicenseType1">
-            <End Role="LicenseType" EntitySet="LicenseType" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductCheck_Product" Association="Self.FK_ProductCheck_Product">
+          <AssociationSet Name="FK_ProductCheck_Product" Association="DBGunshopModel.FK_ProductCheck_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCheck" EntitySet="ProductCheck" />
           </AssociationSet>
-          <AssociationSet Name="ProductType" Association="Self.ProductType">
+          <AssociationSet Name="FK_Product_LicenseType" Association="DBGunshopModel.FK_Product_LicenseType">
+            <End Role="LicenseType" EntitySet="LicenseType" />
             <End Role="Product" EntitySet="Product" />
-            <End Role="Type" EntitySet="Type" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="IdLicenseType" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Type" Relationship="DBGunshopModel.FK_Product_Type" FromRole="Product" ToRole="Type" />
+          <NavigationProperty Name="ProductCheck" Relationship="DBGunshopModel.FK_ProductCheck_Product" FromRole="Product" ToRole="ProductCheck" />
+          <NavigationProperty Name="LicenseType" Relationship="DBGunshopModel.FK_Product_LicenseType" FromRole="Product" ToRole="LicenseType" />
+        </EntityType>
+        <Association Name="FK_Product_Type">
+          <End Type="DBGunshopModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCheck_Product">
+          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="DBGunshopModel.ProductCheck" Role="ProductCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCheck">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_LicenseType">
+          <End Type="DBGunshopModel.LicenseType" Role="LicenseType" Multiplicity="1" />
+          <End Type="DBGunshopModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdLicenseType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище VlGunShopModelContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Account">
-            <EntityTypeMapping TypeName="VlGunShopModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
-                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBGunshopModelContainer" CdmEntityContainer="DBEntities">
           <EntitySetMapping Name="Check">
-            <EntityTypeMapping TypeName="VlGunShopModel.Check">
+            <EntityTypeMapping TypeName="DBGunshopModel.Check">
               <MappingFragment StoreEntitySet="Check">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="VlGunShopModel.Client">
+            <EntityTypeMapping TypeName="DBGunshopModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="SureName" ColumnName="SureName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Patronimyc" ColumnName="Patronimyc" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="PassportSerial" ColumnName="PassportSerial" />
-                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientLicense">
-            <EntityTypeMapping TypeName="VlGunShopModel.ClientLicense">
+            <EntityTypeMapping TypeName="DBGunshopModel.ClientLicense">
               <MappingFragment StoreEntitySet="ClientLicense">
                 <ScalarProperty Name="IdClient" ColumnName="IdClient" />
-                <ScalarProperty Name="IdLicense" ColumnName="IdLicense" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
                 <ScalarProperty Name="LicenseNum" ColumnName="LicenseNum" />
                 <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LicenseType">
-            <EntityTypeMapping TypeName="VlGunShopModel.LicenseType">
+            <EntityTypeMapping TypeName="DBGunshopModel.LicenseType">
               <MappingFragment StoreEntitySet="LicenseType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -651,29 +533,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="VlGunShopModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="IdLicenseType" ColumnName="IdLicenseType" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductCheck">
-            <EntityTypeMapping TypeName="VlGunShopModel.ProductCheck">
+            <EntityTypeMapping TypeName="DBGunshopModel.ProductCheck">
               <MappingFragment StoreEntitySet="ProductCheck">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="CheckId" ColumnName="CheckId" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdCheck" ColumnName="IdCheck" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="VlGunShopModel.sysdiagrams">
+            <EntityTypeMapping TypeName="DBGunshopModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -684,36 +555,41 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="VlGunShopModel.Type">
+            <EntityTypeMapping TypeName="DBGunshopModel.Type">
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worker">
-            <EntityTypeMapping TypeName="VlGunShopModel.Worker">
+            <EntityTypeMapping TypeName="DBGunshopModel.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdAccount" ColumnName="IdAccount" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="PassportSerial" ColumnName="PassportSerial" />
-                <ScalarProperty Name="PassportNum" ColumnName="PassportNum" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ProductType" TypeName="VlGunShopModel.ProductType" StoreEntitySet="ProductType">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="IdProduct" />
-            </EndProperty>
-            <EndProperty Name="Type">
-              <ScalarProperty Name="Id" ColumnName="IdType" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DBGunshopModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdLicenseType" ColumnName="IdLicenseType" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

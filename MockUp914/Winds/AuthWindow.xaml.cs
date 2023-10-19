@@ -27,7 +27,7 @@ namespace MockUp914.Winds
 
         private void btn_AuthEnter_Click(object sender, RoutedEventArgs e)
         {
-            var person = context.Account.Where(i => i.Username == tb_Login.Text && i.Password == pb_Password.Password).FirstOrDefault();
+            var person = context.Worker.Where(i => i.Username == tb_Login.Text && i.Password == pb_Password.Password).FirstOrDefault();
             if (person != null)
             {
                 if (person.IsAdmin)

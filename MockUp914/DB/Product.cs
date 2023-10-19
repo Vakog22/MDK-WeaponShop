@@ -18,20 +18,18 @@ namespace MockUp914.DB
         public Product()
         {
             this.ProductCheck = new HashSet<ProductCheck>();
-            this.Type = new HashSet<Type>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public decimal Cost { get; set; }
         public int IdLicenseType { get; set; }
-        public string PhotoPath { get; set; }
+        public byte[] Photo { get; set; }
+        public int IdType { get; set; }
     
-        public virtual LicenseType LicenseType { get; set; }
-        public virtual LicenseType LicenseType1 { get; set; }
+        public virtual Type Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCheck> ProductCheck { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Type> Type { get; set; }
+        public virtual LicenseType LicenseType { get; set; }
     }
 }

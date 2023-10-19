@@ -27,6 +27,8 @@ namespace MockUp914
         public MainWindow(int type)
         {
             InitializeComponent();
+            CataloguePage cataloguePage = new CataloguePage();
+            f_MainFrame.Navigate(cataloguePage);
             if (type == 0)
             {
                 btn_Users.Visibility = Visibility.Hidden;

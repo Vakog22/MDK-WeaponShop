@@ -15,9 +15,9 @@ namespace MockUp914.DB
     public partial class ClientLicense
     {
         public int IdClient { get; set; }
-        public int IdLicense { get; set; }
+        public int IdType { get; set; }
         public string LicenseNum { get; set; }
-        public Nullable<System.DateTime> LicenseDate { get; set; }
+        public System.DateTime LicenseDate { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual LicenseType LicenseType { get; set; }

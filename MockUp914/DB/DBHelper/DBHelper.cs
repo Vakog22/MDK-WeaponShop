@@ -8,6 +8,6 @@ namespace MockUp914.DB.DBHelper
 {
     public class DBHelper
     {
-        public static Entities context { get; set; } = new Entities();
+        public static DBEntities context { get; set; } = new DBEntities();
     }
 }

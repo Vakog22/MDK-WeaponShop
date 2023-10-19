@@ -22,8 +22,8 @@ namespace MockUp914.DB
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
-        public int IdWorker { get; set; }
         public int IdClient { get; set; }
+        public int IdWorker { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Worker Worker { get; set; }
