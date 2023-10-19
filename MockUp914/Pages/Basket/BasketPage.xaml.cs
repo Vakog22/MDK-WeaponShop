@@ -2,6 +2,7 @@
 using MockUp914.DB.DBHelper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -24,34 +25,96 @@ namespace MockUp914.Pages.Basket
     /// </summary>
     public partial class BasketPage : Page
     {
-        Check check;
         public BasketPage()
         {
             InitializeComponent();
-            LvProduct.ItemsSource = context.Product.ToList();
-            check = new Check();
-            check.Id = 3;
-            check.Date = DateTime.Now;
-            check.IdWorker = 1;
-            check.IdClient = 0;
+            GetListProduct();
+        }
+        private void GetListProduct()
+        {
+            ObservableCollection<DB.Product> products = new ObservableCollection<DB.Product>(BasketHelper.Products);
+            LvCartProductList.ItemsSource = products;
         }
 
-        private void btn_Minus_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void btn_Plus_Click(object sender, RoutedEventArgs e)
+        private void BtnRemoveToCart_Click(object sender, RoutedEventArgs e)
         {
-            ProductCheck productCheck = new ProductCheck();
-            productCheck.IdCheck = check.Id;
-            productCheck.Id = 3;
-            Button button = (Button)sender;
-            if (button == null) 
+            Button button = sender as Button;
+            if (button == null)
             {
                 return;
             }
-            var SelectedProduct = button.DataContext as DB.Product;
+            DB.Product selectedProduct = button.DataContext as DB.Product;
+
+            if (selectedProduct != null)
+            {
+                if (selectedProduct.Quantity == 1 || selectedProduct.Quantity == 0)
+                {
+                    BasketHelper.Products.Remove(selectedProduct);
+                }
+                else
+                {
+                    selectedProduct.Quantity--;
+                    int o = BasketHelper.Products.IndexOf(selectedProduct);
+                    BasketHelper.Products.Remove(selectedProduct);
+                    BasketHelper.Products.Insert(o, selectedProduct);
+                }
+
+            }
+            GetListProduct();
+        }
+
+        private void BtnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            DB.Product selectedProduct = button.DataContext as DB.Product;
+            if (selectedProduct != null)
+            {
+                selectedProduct.Quantity++;
+                int o = BasketHelper.Products.IndexOf(selectedProduct);
+                BasketHelper.Products.Remove(selectedProduct);
+                BasketHelper.Products.Insert(o, selectedProduct);
+            }
+            GetListProduct();
+        }
+
+        private void BtnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<DB.Product> products = new ObservableCollection<DB.Product>(BasketHelper.Products);
+            if (products.Count() == 0)
+            {
+                MessageBox.Show("Корзина пуста");
+            }
+            else
+            {
+                DB.Check check = new DB.Check();
+                check.IdWorker = 1;
+                check.IdClient = 0;
+                check.Date = DateTime.Now;
+                if (check != null)
+                {
+                    context.Check.Add(check);
+                    context.SaveChanges();
+                }
+
+
+                foreach (var item in BasketHelper.Products)
+                {
+                    DB.ProductCheck saleProduct = new DB.ProductCheck();
+                    saleProduct.IdProduct = item.Id;
+                    saleProduct.Quantity = item.Quantity;
+                    saleProduct.IdCheck = context.Check.ToList().LastOrDefault().Id;
+                    context.ProductCheck.Add(saleProduct);
+                    context.SaveChanges();
+                }
+                    BasketHelper.Products = new ObservableCollection<DB.Product>();
+                MessageBox.Show("Продукты успешно добавлены");
+            }
         }
     }
 }

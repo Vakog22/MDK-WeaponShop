@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="DB\DBHelper\BasketHelper.cs" />
     <Compile Include="DB\DBHelper\DBHelper.cs" />
+    <Compile Include="DB\DBHelper\Product.cs" />
     <Compile Include="DB\LicenseType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -123,6 +124,9 @@
     <Compile Include="Pages\Sales\SalePage.xaml.cs">
       <DependentUpon>SalePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Selection\SelectionPage.xaml.cs">
+      <DependentUpon>SelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Users\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Sales\SalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Selection\SelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

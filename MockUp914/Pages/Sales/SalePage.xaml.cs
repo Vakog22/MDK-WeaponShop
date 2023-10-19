@@ -1,6 +1,7 @@
 ﻿using MockUp914.DB;
 using MockUp914.Pages.Basket;
 using MockUp914.Pages.Catalogue;
+using MockUp914.Pages.Selection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +41,8 @@ namespace MockUp914.Pages.Sales
         private void btn_AddSale_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            BasketPage basketPage = new BasketPage();
-            mainWindow.f_MainFrame.Navigate(basketPage);
+            SelectionPage selectionPage = new SelectionPage();
+            mainWindow.f_MainFrame.Navigate(selectionPage);
         }
 
         private void btn_view_Click(object sender, RoutedEventArgs e)

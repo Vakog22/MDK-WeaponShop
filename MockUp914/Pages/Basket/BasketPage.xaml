@@ -5,70 +5,106 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MockUp914.Pages.Basket"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1080"
       Title="BasketPage">
 
     <Grid>
-        <StackPanel>
-            <WrapPanel>
-                <TextBox Width="1000"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
 
-                <ListView x:Name="LvProduct"
-           
-           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <TextBlock Text="Корзина"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   FontWeight="Bold"/>
 
-                    <ListView.Resources>
-                        <Style TargetType="ListViewItem">
-                            <Style.Triggers>
-                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                                    <Setter Property="IsSelected" Value="True"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.Resources>
+        <ListView x:Name="LvCartProductList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=50}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="200">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
 
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black"
+                            BorderThickness="1"
+                            Margin="5"
+                            Width="165"
+                            Height="300">
+                        <StackPanel>
+                            <Image Height="140"
+                                   Width="165"
+                                   Stretch="Fill">
+                            </Image>
+                            <TextBlock Text="{Binding Title}"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Margin="10 0 0 0"
+                                       TextWrapping="Wrap" />
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="Black"
-                     BorderThickness="1"
-                     Height="300"
-                         Width="220">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}"
-                                FontSize="10"
-                                FontWeight="Bold"
-                                Margin="5 0 5 0"/>
-                                    <TextBlock Text="{Binding Cost}"
-                                FontSize="10"
-                                FontWeight="Bold"
-                                Margin="5 0 5 0"/>
-                                    <TextBlock Text="{Binding Type.Title}"
-                                            FontSize="10"
-                                            FontWeight="Bold"
-                                            Margin="5 0 5 0"/>
-                                    <TextBlock Text="{Binding LicenseType.Title}"
-                                            FontSize="10"
-                                            FontWeight="Bold"
-                                            Margin="5 0 5 0"/>
-                                    <Image Width="200" Height="200" Source="{Binding Photo}"/>
-                                    <WrapPanel>
-                                        <Button Content="+" x:Name="btn_Plus" Click="btn_Plus_Click"/>
-                                        <TextBlock x:Name="tb_Quantity"/>
-                                        <Button Content="-" x:Name="btn_Minus" Click="btn_Minus_Click"/>
-                                    </WrapPanel>
-                                </StackPanel>
-                            </Border>
+                            <TextBlock Text="{Binding Price}"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Margin="10 0 0 0"/>
 
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </WrapPanel>
-        </StackPanel>
+                            <TextBlock Text="{Binding Description}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Margin="10 0 10 0"
+                                       TextWrapping="Wrap" 
+                                       />
+                            <TextBlock Text="{Binding Quantity}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Margin="10 0 10 0"
+                                       TextWrapping="Wrap" 
+                                       />
+                            <WrapPanel>
+                                <Button x:Name="BtnAddToCart"
+                                    Width="40"
+                                    Height="40"
+                                    Background="{x:Null}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    Click="BtnAddToCart_Click"
+                                    Content="+" FontSize="36"    >
+                                </Button>
+                                <Button x:Name="BtnRemovToCart"
+                                    Width="40"
+                                    Height="40"
+                                    Background="{x:Null}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Center"
+                                    Click="BtnRemoveToCart_Click" VerticalAlignment="Center"
+                                    Content="-" FontSize="36"    >
+                                </Button>
+                            </WrapPanel>
+
+
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+
+        </ListView>
+        <WrapPanel  Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <Button x:Name="BtnAddProduct"
+                Width="40"
+                Height="40"
+                HorizontalAlignment="Center"
+                Margin="0 0 0 0"
+                    Content="ass"
+                BorderThickness="0" Click="BtnAddProduct_Click" VerticalAlignment="Center">
+            </Button>
+            <TextBlock x:Name="TBPrice" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" FontSize="36"/>
+        </WrapPanel>
+
     </Grid>
 </Page>
