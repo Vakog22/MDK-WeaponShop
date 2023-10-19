@@ -35,20 +35,25 @@ namespace MockUp914.Pages.Users
             worker.PassportNum = tb_PassportNum.Text;
             worker.DateOfBirth = tb_DateOfBirth.SelectedDate.Value;
             worker.Phone = tb_Phone.Text;
-            //worker.Account.Username = tb_Username.Text;
-            //worker.Account.Password = tb_Password.Text;
-            try
-            {
-                //worker.Account.Id = 2;
+            //try
+            //{
+                DB.Account account = new DB.Account();
+                account.Username = tb_Username.Text;
+                account.Password = tb_Password.Text;
+                context.Account.Add(account);
+                account.IsAdmin = false;
+                context.SaveChanges();
+                worker.IdAccount = context.Account.Where(i => i.Username == account.Username).FirstOrDefault().Id;
                 context.Worker.Add(worker);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-            UserPage userPage = new UserPage();
-            mainWindow.f_MainFrame.Navigate(userPage);
+
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                UserPage userPage = new UserPage();
+                mainWindow.f_MainFrame.Navigate(userPage);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
