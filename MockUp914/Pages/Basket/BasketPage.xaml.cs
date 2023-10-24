@@ -1,5 +1,7 @@
 ﻿using MockUp914.DB;
 using MockUp914.DB.DBHelper;
+using MockUp914.Pages.Clients;
+using MockUp914.Pages.Users;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -92,28 +94,9 @@ namespace MockUp914.Pages.Basket
             }
             else
             {
-                DB.Check check = new DB.Check();
-                check.IdWorker = 1;
-                check.IdClient = 0;
-                check.Date = DateTime.Now;
-                if (check != null)
-                {
-                    context.Check.Add(check);
-                    context.SaveChanges();
-                }
-
-
-                foreach (var item in BasketHelper.Products)
-                {
-                    DB.ProductCheck saleProduct = new DB.ProductCheck();
-                    saleProduct.IdProduct = item.Id;
-                    saleProduct.Quantity = item.Quantity;
-                    saleProduct.IdCheck = context.Check.ToList().LastOrDefault().Id;
-                    context.ProductCheck.Add(saleProduct);
-                    context.SaveChanges();
-                }
-                    BasketHelper.Products = new ObservableCollection<DB.Product>();
-                MessageBox.Show("Продукты успешно добавлены");
+                MainWindow mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+                ClientPage cp = new ClientPage();
+                mainWindow.f_MainFrame.Navigate(cp);
             }
         }
     }

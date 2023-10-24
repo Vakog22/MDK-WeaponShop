@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel>
             <WrapPanel>
-                <TextBox Width="1000"/>
+                <TextBox Width="1000" x:Name="tb_Search" TextChanged="tb_Search_TextChanged"/>
                 <Button Content="+" x:Name="btn_AddProduct" Click="btn_AddProduct_Click"/>
 
                 <ListView x:Name="LvProduct"

@@ -58,5 +58,17 @@ namespace MockUp914.Pages.Catalogue
                 MessageBox.Show("Товар удалён");
             }
         }
+
+        private void tb_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(tb_Search.Text))
+            {
+                LvProduct.ItemsSource = context.Product.ToList();
+            }
+            else 
+            {
+                LvProduct.ItemsSource = context.Product.ToList().Where(i => i.Title.StartsWith(tb_Search.Text));
+            }
+        }
     }
 }

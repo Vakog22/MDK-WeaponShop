@@ -69,5 +69,16 @@ namespace MockUp914.Pages.Users
             EmployeeList = context.Worker.ToList();
             LvWorker.ItemsSource = EmployeeList;
         }
+        private void tb_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(tb_Search.Text))
+            {
+                LvWorker.ItemsSource = context.Worker.ToList();
+            }
+            else
+            {
+                LvWorker.ItemsSource = context.Worker.ToList().Where(i => i.FirstName.StartsWith(tb_Search.Text) || i.LastName.StartsWith(tb_Search.Text));
+            }
+        }
     }
 }

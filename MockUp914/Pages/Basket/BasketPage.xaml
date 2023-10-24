@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
@@ -21,7 +21,8 @@
                    FontSize="30"
                    FontWeight="Bold"/>
 
-        <ListView x:Name="LvCartProductList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=50}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="200">
+        <ListView x:Name="LvCartProductList" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=50}" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="1080">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -33,12 +34,13 @@
                     <Border BorderBrush="Black"
                             BorderThickness="1"
                             Margin="5"
-                            Width="165"
-                            Height="300">
+                            Width="150"
+                            Height="200">
                         <StackPanel>
-                            <Image Height="140"
-                                   Width="165"
-                                   Stretch="Fill">
+                            <Image Height="100"
+                                   Width="150"
+                                   Stretch="Fill"
+                                   Source="{Binding Photo}">
                             </Image>
                             <TextBlock Text="{Binding Title}"
                                        FontSize="18"
@@ -46,33 +48,12 @@
                                        Margin="10 0 0 0"
                                        TextWrapping="Wrap" />
 
-                            <TextBlock Text="{Binding Price}"
+                            <TextBlock Text="{Binding Cost}"
                                        FontSize="18"
                                        FontWeight="Bold"
                                        Margin="10 0 0 0"/>
 
-                            <TextBlock Text="{Binding Description}"
-                                       FontSize="14"
-                                       FontWeight="Bold"
-                                       Margin="10 0 10 0"
-                                       TextWrapping="Wrap" 
-                                       />
-                            <TextBlock Text="{Binding Quantity}"
-                                       FontSize="14"
-                                       FontWeight="Bold"
-                                       Margin="10 0 10 0"
-                                       TextWrapping="Wrap" 
-                                       />
                             <WrapPanel>
-                                <Button x:Name="BtnAddToCart"
-                                    Width="40"
-                                    Height="40"
-                                    Background="{x:Null}"
-                                    BorderThickness="0"
-                                    HorizontalAlignment="Right"
-                                    Click="BtnAddToCart_Click"
-                                    Content="+" FontSize="36"    >
-                                </Button>
                                 <Button x:Name="BtnRemovToCart"
                                     Width="40"
                                     Height="40"
@@ -80,8 +61,21 @@
                                     BorderThickness="0"
                                     HorizontalAlignment="Center"
                                     Click="BtnRemoveToCart_Click" VerticalAlignment="Center"
-                                    Content="-" FontSize="36"    >
-                                </Button>
+                                    Content="-" FontSize="36"    />
+                                <TextBlock Text="{Binding Quantity}"
+                                       FontSize="14"
+                                       FontWeight="Bold"
+                                       Margin="10 0 10 0"
+                                       TextWrapping="Wrap" 
+                                       Width="10"/>
+                                <Button x:Name="BtnAddToCart"
+                                    Width="40"
+                                    Height="40"
+                                    Background="{x:Null}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    Click="BtnAddToCart_Click"
+                                    Content="+" FontSize="36"    />
                             </WrapPanel>
 
 

@@ -7,18 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1080">
     <Grid>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <WrapPanel HorizontalAlignment="Stretch" Height="40">
-                <Button Content="Выход" x:Name="btn_Exit" Click="btn_Exit_Click"/>
-                <Label Content="АААААААААААААААААААА"/>
-                <TextBlock Text="25:61"/>
-            </WrapPanel>
-            <WrapPanel Height="40">
-                <Button Content="Каталог" x:Name="btn_Catalogue" Click="btn_Catalogue_Click"/>
-                <Button Content="Продажи" x:Name="btn_Sales" Click="btn_Sales_Click"/>
-                <Button Content="Пользователи" x:Name="btn_Users" Click="btn_Users_Click"/>
-            </WrapPanel>
-            <Frame Height="600" x:Name="f_MainFrame" NavigationUIVisibility="Hidden" x:FieldModifier="public"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Height="150">
+
+        <WrapPanel Height="75">
+             <Button Content="Выход" 
+                     x:Name="btn_Exit" 
+                     Click="btn_Exit_Click"
+                     Margin="10"
+                     FontSize="24"
+                     Background="#822222"
+                     Foreground="#FFFFFF">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Label Content="АААААААААААААААААААА" Margin="100,10,10,10"/>
+            <TextBlock Text="25:61" Margin="100,10,10,10"/>
+        </WrapPanel>
+
+        <WrapPanel Height="40">
+            <Button Content="Каталог" x:Name="btn_Catalogue" Click="btn_Catalogue_Click"/>
+            <Button Content="Продажи" x:Name="btn_Sales" Click="btn_Sales_Click"/>
+            <Button Content="Пользователи" x:Name="btn_Users" Click="btn_Users_Click"/>
+        </WrapPanel>
         </StackPanel>
+
+        <Frame Height="600" 
+               x:Name="f_MainFrame" 
+               NavigationUIVisibility="Hidden" 
+               x:FieldModifier="public"
+               Grid.Row="1"/>
     </Grid>
 </Window>

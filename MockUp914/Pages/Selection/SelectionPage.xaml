@@ -9,79 +9,79 @@
       Title="SelectionPage">
 
     <Grid>
-        <Button Height="40" Width="40" VerticalAlignment="Top" HorizontalAlignment="Right" Click="Button_Click"/>
-        <ListView x:Name="LVEmp" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=50}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="600" Width="1080" Margin="0,0,60,0" HorizontalAlignment="Right">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+        <StackPanel>
+            <ListView x:Name="LVEmp" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=50}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+          Height="560" Width="1080">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black"
+                    BorderThickness="1"
+                    Margin="5"
+                    Width="150"
+                    Height="250">
+                            <StackPanel>
+                                <Image Height="100"
+                           Width="150"
+                           Stretch="Fill"
+                           Source="{Binding Photo}">
+                                </Image>
+                                <TextBlock Text="{Binding Title}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Margin="10 0 0 0"
+                               TextWrapping="Wrap" />
+
+                                <TextBlock Text="{Binding Cost}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Margin="10 0 10 0"
+                               TextWrapping="Wrap" 
+                               />
+                                <TextBlock Text="{Binding Quantity}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Margin="10 0 10 0"
+                               TextWrapping="Wrap" 
+                               />
+                                <WrapPanel VerticalAlignment="Bottom">
+                                    <Button x:Name="BtnPlus"
+                            Content="+"
+                            Width="40"
+                            Height="40"
                             BorderThickness="1"
-                            Margin="5"
-                            Width="200"
-                            Height="300">
-                        <StackPanel>
-                            <Image Height="100"
-                                   Width="100"
-                                   Stretch="Fill">
-                            </Image>
-                            <TextBlock Text="{Binding Title}"
-                                       FontSize="24"
-                                       FontWeight="Bold"
-                                       Margin="10 0 0 0"
-                                       TextWrapping="Wrap" />
+                            HorizontalAlignment="Right"
+                            Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnPlus_Click">
+                                    </Button>
+                                    <Button x:Name="BtnMinus"
+                            Content="-"
+                            Width="40"
+                            Height="40"
+                            BorderThickness="1"
+                            HorizontalAlignment="Right"
+                            Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnMinus_Click">
+                                    </Button>
+                                    <Button x:Name="BtnDelete"
+                            Content="Del"
+                            Width="40"
+                            Height="40"
+                            BorderThickness="1"
+                            HorizontalAlignment="Right"
+                            Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnDelete_Click"/>
+                                </WrapPanel>
 
-                            <TextBlock Text="{Binding Price}"
-                                       FontSize="24"
-                                       FontWeight="Bold"
-                                       Margin="10 0 10 0"
-                                       TextWrapping="Wrap" 
-                                       />
-                            <TextBlock Text="{Binding Quantity}"
-                                       FontSize="24"
-                                       FontWeight="Bold"
-                                       Margin="10 0 10 0"
-                                       TextWrapping="Wrap" 
-                                       />
-                            <WrapPanel VerticalAlignment="Bottom">
-                                <Button x:Name="BtnPlus"
-                                    Content="+"
-                                    Width="40"
-                                    Height="40"
-                                    Background="{x:Null}"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Right"
-                                    Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnPlus_Click">
-                                </Button>
-                                <Button x:Name="BtnMinus"
-                                    Content="-"
-                                    Width="40"
-                                    Height="40"
-                                    Background="{x:Null}"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Right"
-                                    Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnMinus_Click">
-                                </Button>
-                                <Button x:Name="BtnDelete"
-                                    Content="Del"
-                                    Width="40"
-                                    Height="40"
-                                    Background="{x:Null}"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Right"
-                                    Margin="0 0 -1 0" VerticalAlignment="Bottom" Click="BtnDelete_Click"/>
-                            </WrapPanel>
-
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Height="40" Width="40" VerticalAlignment="Bottom" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 
 </Page>

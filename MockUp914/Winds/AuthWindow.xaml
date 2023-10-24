@@ -6,11 +6,42 @@
         xmlns:local="clr-namespace:MockUp914.Winds"
         mc:Ignorable="d"
         Title="AuthWindow" Height="720" Width="1080">
-    <Grid>
+    <Grid Background="#E5E5e5">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox Width="300" x:Name="tb_Login" Text="admin"/>
-            <PasswordBox Width="300" x:Name="pb_Password" Password="admin"/>
-            <Button Width="300" Content="Войти" x:Name="btn_AuthEnter" Click="btn_AuthEnter_Click"/>
+            <Label Content="Добро пожалдовать!" 
+                   FontSize="64"
+                   Margin="0,0,0,100"/>
+            <TextBox Width="300" 
+                     x:Name="tb_Login" 
+                     Text="admin"
+                     Margin="0,0,0,50"
+                     >
+                <TextBox.Effect>
+                    <DropShadowEffect ShadowDepth="2"
+                                      Direction="-75"/>
+                </TextBox.Effect>
+            </TextBox>
+            <PasswordBox Width="300"
+                         x:Name="pb_Password" 
+                         Password="admin"
+                         Margin="0,0,0,50">
+                <PasswordBox.Effect>
+                    <DropShadowEffect ShadowDepth="2"
+                      Direction="-75"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
+            <Button Width="300" 
+                    Content="Войти" 
+                    x:Name="btn_AuthEnter" 
+                    Click="btn_AuthEnter_Click"
+                    Background="#14213D"
+                    Foreground="#FFFFFF">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

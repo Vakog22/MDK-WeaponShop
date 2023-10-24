@@ -50,5 +50,16 @@ namespace MockUp914.Pages.Sales
             Check check = LvSales.SelectedItem as Check;
             DG_Prods.ItemsSource = check.ProductCheck.ToList().Where(i => i.IdCheck == check.Id);
         }
+        private void tb_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(tb_Search.Text))
+            {
+                LvSales.ItemsSource = context.Check.ToList();
+            }
+            else
+            {
+                LvSales.ItemsSource = context.Check.ToList().Where(i => i.Client.FirstName.StartsWith(tb_Search.Text) || i.Client.SureName.StartsWith(tb_Search.Text));
+            }
+        }
     }
 }
